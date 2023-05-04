@@ -13,11 +13,10 @@ class UserController {
 
     static createUser = async (req: Request, res: Response) => {
         try {
-            const { name, email, password } = req.body
+            const { email, password } = req.body
 
             const user = await prisma.user.create({
                 data: {
-                    name,
                     email,
                     password,
                 }
@@ -32,7 +31,7 @@ class UserController {
 
     static updateUser = async (req: Request, res: Response) => {
         try {
-            const { name, email, password, coin } = req.body
+            const { email, password, coin } = req.body
             const { id } = req.params
 
             const coinExist = await prisma.favCoin.findFirst({
@@ -50,7 +49,6 @@ class UserController {
             await prisma.user.update({
                 where: req.params,
                 data: {
-                    name,
                     email,
                     password,
                     favcoins: {
