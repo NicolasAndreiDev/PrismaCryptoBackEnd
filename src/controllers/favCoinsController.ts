@@ -21,9 +21,9 @@ class FavCoinsController {
             const favCoins = await prisma.favCoin.delete({
                 where: coinIdUser
             })
-
             res.status(200).json(favCoins)
-        }catch{
+        }catch(err){
+            console.log(err)
             res.status(400).json({message: 'Erro ao deletar uma moeda'})
         }
     }

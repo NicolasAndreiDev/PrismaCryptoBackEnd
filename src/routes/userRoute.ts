@@ -6,6 +6,7 @@ const router = express.Router();
 
 router
     .get("/users", UserController.listaUsers)
+    .get("/users/:id", UserController.userById)
     .get("/users/favcoins/:id", FavCoinsController.listaFavCoinsPorId)
     .post("/users", UserController.createUser)
     .put("/users/:id", UserController.updateUser)

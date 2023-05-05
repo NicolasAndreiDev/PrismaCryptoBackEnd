@@ -11,6 +11,18 @@ class UserController {
         }
     }
 
+    static userById = async (req: Request, res: Response) => {
+        try{
+            const id = req.params
+            const user = await prisma.user.findFirst({
+                where: id
+            })
+            res.status(200).json(user);
+        }catch{
+            res.status(400).json({message: 'Usuário não encontrado'})
+        }
+    }
+
     static createUser = async (req: Request, res: Response) => {
         try {
             const { email, password } = req.body
